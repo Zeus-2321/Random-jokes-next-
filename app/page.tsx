@@ -1,9 +1,12 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
+interface Joke {
+  value: string;
+}
 
 export default function Home() {
-  const [joke, setJoke] = useState(null);
+  const [joke, setJoke] = useState<Joke | null>(null);
   const [loading, setLoading] = useState(false);
 
   const fetchJoke = async () => {
@@ -20,7 +23,7 @@ export default function Home() {
   };
 
   // Fetch an initial joke when the page loads
-  useState(() => {
+  useEffect(() => {
     fetchJoke();
   }, []);
 
